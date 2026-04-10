@@ -6,12 +6,12 @@ A multi-agent decision workflow that processes product metrics, feedback, and ri
 
 1. Clone the repository and open the project in VS Code.
 2. Create and activate a Python virtual environment:
-   ```powershell
+   ```command prompt
    python -m venv .venv
    .\.venv\Scripts\Activate.ps1
    ```
 3. Install dependencies:
-   ```powershell
+   ```command prompt
    pip install -r requirements.txt
    ```
 4. Create a `.env` file in the project root with your Groq API key:
@@ -30,7 +30,7 @@ A multi-agent decision workflow that processes product metrics, feedback, and ri
 
 ## Example Commands
 
-```powershell
+```command prompt
 cd c:\projects\war_room_multiagent\war_room_multiagent
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
