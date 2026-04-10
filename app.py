@@ -40,27 +40,27 @@ def main():
             logger.info(f"[FINAL_DECISION] Decision: {decision_data['decision']}")
             
             print("\n" + "="*60)
-            print("🚀 PRODUCT WAR ROOM DECISION")
+            print("PRODUCT WAR ROOM DECISION")
             print("="*60)
 
-            print(f"\n📊 DECISION: {decision_data['decision']}")
-            print(f"\n📋 RATIONALE:\n{decision_data['rationale']}")
+            print(f"\n DECISION: {decision_data['decision']}")
+            print(f"\n RATIONALE:\n{decision_data['rationale']}")
 
-            print(f"\n⚠️  RISK REGISTER:")
+            print(f"\n RISK REGISTER:")
             for i, risk in enumerate(decision_data['risk_register'], 1):
                 print(f"  {i}. {risk['risk']} (Impact: {risk['impact']})")
                 print(f"     Mitigation: {risk['mitigation']}")
 
-            print(f"\n⏰ ACTION PLAN (24-48 Hours):")
+            print(f"\n ACTION PLAN (24-48 Hours):")
             for i, action in enumerate(decision_data['action_plan_24_48h'], 1):
                 print(f"  {i}. {action['action']}")
                 print(f"     Owner: {action['owner']} | Timeline: {action['timeline']}")
 
-            print(f"\n📢 COMMUNICATION PLAN:")
+            print(f"\n COMMUNICATION PLAN:")
             print(f"  Internal: {decision_data['communication_plan']['internal']}")
             print(f"  External: {decision_data['communication_plan']['external']}")
 
-            print(f"\n🎯 CONFIDENCE SCORE:")
+            print(f"\n CONFIDENCE SCORE:")
             print(f"  Score: {decision_data['confidence_score']['score']}")
             print(f"  Factors to increase confidence: {decision_data['confidence_score']['factors']}")
 
