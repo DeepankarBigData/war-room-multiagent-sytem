@@ -1,5 +1,11 @@
+import logging
+
+logger = logging.getLogger(__name__)
+
 def pm_agent(state, llm):
-    prompt = f"""
+    logger.info("[PM_AGENT] Starting PM agent")
+    try:
+        prompt = f"""
     <role>You are an expert product manager analyst in a war room.</role>
     <goal>Summarize the business impact of the feature launch using metrics and feedback.</goal>
 
@@ -27,9 +33,15 @@ def pm_agent(state, llm):
       5. Keep each field concise and focused on business outcomes.
     </global_rules>
     """
-
-    response = llm.invoke(prompt)
-    return {
-        **state,
-        "pm_analysis": response.content
-    }
+        logger.debug("[PM_AGENT] Invoking LLM for business impact analysis")
+        response = llm.invoke(prompt)
+        logger.info(f"[PM_AGENT] PM analysis generated successfully")
+        logger.info("[PM_AGENT] PM agent completed")
+        
+        return {
+            **state,
+            "pm_analysis": response.content
+        }
+    except Exception as e:
+        logger.error(f"[PM_AGENT] Error in PM agent: {str(e)}", exc_info=True)
+        raise

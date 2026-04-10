@@ -1,5 +1,11 @@
+import logging
+
+logger = logging.getLogger(__name__)
+
 def decision_node(state, llm):
-    prompt = f"""
+    logger.info("[DECISION_NODE] Starting decision node")
+    try:
+        prompt = f"""
     You are a senior decision maker in a product war room.
 
     Inputs:
@@ -43,10 +49,20 @@ def decision_node(state, llm):
       }}
     }}
     """
+        logger.debug("[DECISION_NODE] Invoking LLM for final decision")
+        response = llm.invoke(prompt)
+        logger.debug(f"[DECISION_NODE] Raw response: {response}")
+        logger.debug(f"[DECISION_NODE] Response type: {type(response)}")
+        logger.debug(f"[DECISION_NODE] Response content: {response.content if hasattr(response, 'content') else 'NO CONTENT ATTR'}")
+        
+        final_decision = response.content if hasattr(response, 'content') else str(response)
+        logger.info(f"[DECISION_NODE] Final decision generated (length: {len(final_decision)})")
+        logger.info("[DECISION_NODE] Decision node completed")
 
-    response = llm.invoke(prompt)
-
-    return {
-        **state,
-        "final_decision": response.content
-    }
+        return {
+            **state,
+            "final_decision": final_decision
+        }
+    except Exception as e:
+        logger.error(f"[DECISION_NODE] Error in decision node: {str(e)}", exc_info=True)
+        raise
